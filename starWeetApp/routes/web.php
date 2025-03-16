@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ModalController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/** PAGES */
+Route::get('/', [PageController::class, 'index'])->name('welcome');
+
+
+/**MODALs */
+Route::get('/modal-content', [ModalController::class, 'loadContent'])->name('modal.content');
