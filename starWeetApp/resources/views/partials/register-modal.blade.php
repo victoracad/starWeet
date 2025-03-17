@@ -1,10 +1,11 @@
 <div class=" h-full flex flex-col p-5 bg-white rounded-lg shadow-md">
     <h2 class="text-xl font-bold">Faça login com sua conta STARSWEET</h2>
-        <label for="">UserName</label>
-        <input type="text">
-        <label for="">Password</label>
-        <input type="password">
-        <label for="">Confirm Password</label>
-        <input type="password">
-    <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600" onclick="fecharModal()">Fechar</button>
+    <form style="display: flex ; flex-direction: column" id="formEmailCod">
+        @csrf
+        <input style="border: 1px solid black" type="text" id="name" name="name" placeholder="Nome" required>
+        <input style="border: 1px solid black" type="email" id="email" name="email" placeholder="Email" required>
+        <input style="border: 1px solid black" type="date" id="dateBirthday" name="dateBirthday" required>
+        <button style="border: 1px solid black; cursor: pointer" type="submit"  onclick="emailCod()" >Avançar</button>
+    </form>
+    
 </div>

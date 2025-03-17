@@ -1,0 +1,1 @@
+<h1>Bem vindo a sua home, {{$user->username}}</h1>

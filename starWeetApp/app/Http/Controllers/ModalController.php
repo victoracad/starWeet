@@ -8,14 +8,14 @@ class ModalController extends Controller
 {
     public function loadContent(Request $request)
     {
-        $modelName = $request->input('model'); 
+        $modalName = $request->input('modal'); 
 
-        switch ($modelName) {
+        switch ($modalName) {
             case 'login-modal':
 
                 return view('partials.login-modal');
             case 'register-modal':
-
+                
                 return view('partials.register-modal');
             default:
 

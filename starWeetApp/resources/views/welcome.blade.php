@@ -11,13 +11,13 @@
 <body class="bg-gray-100 flex justify-center items-center h-screen">
 
 
-<div class="text-center">
-    <h1 class="text-3xl font-bold">Home Page</h1>
+<div class="text-center" >
+    <h1 class="text-3xl font-bold" >Entre ou Cadastre-se na StarSweet</h1>
     <button class="mt-5 bg-blue-500 text-white px-6 py-3 cursor-pointer rounded-md hover:bg-blue-600" onclick="openModal('register-modal')">Cadastrar</button>
     <button class="mt-5 bg-blue-500 text-white px-6 py-3 cursor-pointer rounded-md hover:bg-blue-600" onclick="openModal('login-modal')">Entrar</button>
 </div>
 
-<!-- Modal (Invisível inicialmente) -->
+
 <div id="modalOverlay"  class="hidden fixed inset-0 flex justify-center items-center">
     <div id="modalContainer" class=" bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between items-center" style="width: 500px; height: 600px">
         <div class="flex justify-between items-center w-full ">
@@ -29,16 +29,68 @@
         </div>
     </div>
 </div>
-
 <script>
     function openModal(modalName) {
         $.ajax({
             url: "/modal-content",  // Rota fixa
             type: "GET",
-            data: { model: modalName },  // Passando o nome do model como parâmetro
+            data: { modal: modalName },  // Passando o nome do modal como parâmetro
             success: function(data) {
                 $("#modalBody").html(data);
                 $("#modalOverlay").removeClass("hidden");
+            }
+        });
+    }
+
+
+
+    function emailCod() {
+                event.preventDefault(); 
+
+                $.ajax({
+                    url: "/createcodemail",  
+                    type: "GET",
+                    data: { email: $("#email").val(),
+                            name: $("#name").val(),
+                            dateBirthday: $("#dateBirthday").val()
+                    },
+                    success: function(data) {
+                        $("#modalBody").html(data);
+                    }
+                });
+    }
+
+
+    function ConfirmCod(){
+        event.preventDefault(); 
+         $.ajax({
+            url: "/confirm-code",  
+            type: "GET",
+            data: { email: $("#email").val(),
+                  verification_code: $("#verification_code").val(),
+                  name: $('#name').val(),
+                  dateBirthday: $("#dateBirthday").val()
+            },
+            success: function(data) {
+                $("#modalBody").html(data);
+            }
+        });
+    }
+
+    function CreateUser(){
+        event.preventDefault(); 
+        alert('entrou');
+        $.ajax({
+            url: "/createUser",  
+            type: "GET",
+            data: { email: $("#email").val(),
+                    name: $("#name").val(),
+                    dateBirthday: $("#dateBirthday").val(),
+                    password: $("#password").val()
+            },
+            success: function(data) {
+                window.location.href = '/home'; // Redireciona para a URL recebida
+                
             }
         });
     }
