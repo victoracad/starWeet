@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite('resources/css/app.css')
 </head>
-<body class="">
+<body class="border-2 border-amber-500 w-full h-lvh">
     @yield('content')
 </body>
 </html>

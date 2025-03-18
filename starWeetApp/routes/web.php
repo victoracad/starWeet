@@ -8,7 +8,8 @@ use App\Mail\emailAuth;
 
 /** PAGES */
 Route::get('/', [AuthController::class, 'verifyauth'])->name('login');
-Route::get('/home', [AuthController::class, 'homePage'])->name('homePage')->middleware('auth');;
+Route::get('/home', [AuthController::class, 'homePage'])->name('homePage')->middleware('auth');
+Route::get('/user/{user}', [PageController::class, 'userPage'])->name('userPage')->middleware('auth');
 
 
 /**MODALs */

@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function verifyauth(){
-       /**  if(Auth::user()){//verifica se há um usuarioreturn redirect('/dashboard');//redireciona para a rota dashboard}*/
+         if(Auth::user()){
+            return redirect('/home');
+        }
         return view('welcome');//se não entrar no if, significa que o usuario não está autenticado, então retorna a view welcome padrão
         
     }
@@ -48,7 +50,6 @@ class AuthController extends Controller
         
         return view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday]);
     }
-
     public function ConfirmCode(Request $request){
         $email = $request->input('email');
         $name = $request->input('name') ;
@@ -100,8 +101,7 @@ class AuthController extends Controller
         }
     }
     public function homePage(){
-        $user = Auth::user();
-        return view('home', ['user' => $user]);
+        return view('home', ['user' => Auth::user()]);
     }
     public function logout(Request $request){
         Auth::logout(); 

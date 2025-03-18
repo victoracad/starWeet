@@ -40,9 +40,9 @@
 <script>
     function openModal(modalName) {
         $.ajax({
-            url: "/modal-content",  // Rota fixa
+            url: "/modal-content",  
             type: "GET",
-            data: { modal: modalName },  // Passando o nome do modal como parâmetro
+            data: { modal: modalName },  
             success: function(data) {
                 $("#modalBody").html(data);
                 $("#modalOverlay").removeClass("hidden");
