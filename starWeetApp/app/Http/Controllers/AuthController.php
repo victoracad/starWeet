@@ -57,38 +57,81 @@ class AuthController extends Controller
         $codVerify = EmailVerification::where('email', $email)->where('verification_code', $codeVerify)->first();
 
         if ($codVerify) {
-            return view('partials.password-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday]);
+            return response()->json([
+                'view' => view('partials.password-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
+                'viewType' => 'passwordview'
+            ]);
+            //return view('partials.password-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday]);
         } else {
-            return view('partials.register-modal');
+            session()->flash('messageErrorCode', 'Código de verificação inválido');
+            
+            return response()->json([
+                'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
+                'viewType' => 'authcodeview'
+            ]);
+            //return ;
+            /*return response()->json([
+                'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
+                'viewType' => 'authcodeview'
+            ]);
+            return response()->json([
+                'view' => view('partials.authcode-modal'),
+                'viewType' => 'authcodeview'
+            ]);*/
+            
+            //return view('partials.authcode-modal');
         }
 
-    }
-    public function otherFun(Request $request){
-        return view('partials.register-modal');
     }
     public function CreateUser(Request $request){
         //return view('partials.register-modal');
         $email = $request->input('email');
-        $name = $request->input('name') ;//+ strtoupper(Str::random(10));
+        $name = $request->input('name') . strtoupper(Str::random(10));
         $dateBirthday = $request->input('dateBirthday');
         $password = $request->input('password');
-        User::create([
-            'username' => $name,
-            'email' => $email,
-            'password' => Hash::make($password),
-        ]);
+        if(!User::where('email', $email)->first()){
+            User::create([
+                'username' => $name,
+                'email' => $email,
+                'password' => Hash::make($password),
+            ]);
+        }else{
+            session()->flash('messageErrorRegister', 'Email já existe');
+            return view('partials.register-modal');
+        }
+        
 
         if (Auth::attempt(['email' => $email, 'password' => $password]))
 	    {
             $user = Auth::user();
             //return '<h1>Deu certo</h1>';
-            return 'deu certo';
+            return ;
             //return redirect('/home')->with(['message' => 'Usuario fez login com sucesso', 'user' => $user]);
         }
     }
     public function homePage(){
         $user = Auth::user();
         return view('home', ['user' => $user]);
+    }
+    public function logout(Request $request){
+        Auth::logout(); 
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+    public function login(Request $request){
+        //return view('partials.authcode-modal');
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
+	    {
+            return ;
+        }
+        session()->flash('messageErrorLogin', 'Email ou senha errados');
+        return view('partials.login-modal');
     }
     
 }

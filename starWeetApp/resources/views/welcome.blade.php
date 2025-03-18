@@ -27,7 +27,14 @@
         <div id="modalBody" class="mt-4 " style="height: 500px">
             
         </div>
+        <div id="loading" style="display: none; text-align: center;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+        </div>
     </div>
+
+    
 </div>
 <script>
     function openModal(modalName) {
@@ -46,7 +53,8 @@
 
     function emailCod() {
                 event.preventDefault(); 
-
+                $("#modalBody").addClass("hidden");
+                $("#loading").show();
                 $.ajax({
                     url: "/createcodemail",  
                     type: "GET",
@@ -55,7 +63,9 @@
                             dateBirthday: $("#dateBirthday").val()
                     },
                     success: function(data) {
+                        $("#loading").hide();
                         $("#modalBody").html(data);
+                        $("#modalBody").removeClass("hidden");
                     }
                 });
     }
@@ -63,6 +73,8 @@
 
     function ConfirmCod(){
         event.preventDefault(); 
+        $("#modalBody").addClass("hidden");
+        $("#loading").show();
          $.ajax({
             url: "/confirm-code",  
             type: "GET",
@@ -71,15 +83,29 @@
                   name: $('#name').val(),
                   dateBirthday: $("#dateBirthday").val()
             },
-            success: function(data) {
-                $("#modalBody").html(data);
+            success: function(response) {
+                //alert('voltou');
+                $("#loading").hide();
+                $("#modalBody").removeClass("hidden");
+                if (response.viewType === 'passwordview') {
+                    alert("Primeira view chegou");
+                    $("#modalBody").html(response.view);
+                } else /*if (response.viewType === 'authcodeview')*/ {
+                    alert("Segunda view chegou");
+                    alert(response.view);
+                    $("#modalBody").html(response.view);
+                }
+                
+                
+                
             }
         });
     }
 
     function CreateUser(){
         event.preventDefault(); 
-        alert('entrou');
+        $("#modalBody").addClass("hidden");
+        $("#loading").show();
         $.ajax({
             url: "/createUser",  
             type: "GET",
@@ -89,7 +115,14 @@
                     password: $("#password").val()
             },
             success: function(data) {
-                window.location.href = '/home'; // Redireciona para a URL recebida
+                $("#loading").hide();
+                $("#modalBody").removeClass("hidden");
+                //window.location.href = '/home'; // Redireciona para a URL recebida
+                if(data){
+                    $("#modalBody").html(data);
+                }else{
+                    window.location.href = '/home';
+                }
                 
             }
         });
@@ -97,6 +130,27 @@
 
     function fecharModal() {
         $("#modalOverlay").addClass("hidden");
+    }
+    function userLogin(){
+        event.preventDefault(); 
+        $("#modalBody").addClass("hidden");
+        $("#loading").show();
+        $.ajax({
+            url: "/login-action",  
+            type: "GET",
+            data: { email: $("#email").val(),
+                    password: $("#password").val(),
+            },
+            success: function(data) {
+                $("#loading").hide();
+                $("#modalBody").removeClass("hidden");
+                if(data){
+                    $("#modalBody").html(data);
+                }else{
+                    window.location.href = '/home';
+                }
+            }
+        });
     }
 </script>
 

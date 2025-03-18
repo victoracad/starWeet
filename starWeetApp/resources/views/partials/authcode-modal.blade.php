@@ -8,4 +8,9 @@
         <input style="border: 1px solid black" type="text" id="verification_code" name="verification_code" placeholder="Código de verificação" required>
         <button style="border: 1px solid black; cursor: pointer" type="submit" onclick="ConfirmCod()" >Verificar email</button>
     </form>
+    <div>
+        @if (session('messageErrorCode'))
+            <p>{{session('messageErrorCode')}}</p>
+        @endif
+    </div>
 </div>

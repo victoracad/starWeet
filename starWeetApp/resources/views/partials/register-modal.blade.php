@@ -7,5 +7,9 @@
         <input style="border: 1px solid black" type="date" id="dateBirthday" name="dateBirthday" required>
         <button style="border: 1px solid black; cursor: pointer" type="submit"  onclick="emailCod()" >Avançar</button>
     </form>
-    
+    <div>
+        @if (session('messageErrorRegister'))
+            <p>{{session('messageErrorRegister')}}</p>
+        @endif
+    </div>
 </div>

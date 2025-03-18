@@ -8,4 +8,9 @@
         <input style="border: 1px solid black" type="password" id="password" name="password" placeholder="Senha" required>
         <button style="border: 1px solid black; cursor: pointer" type="submit" onclick="CreateUser()" >Inscrever-se</button>
     </form>
+    <div>
+        @if (session('message'))
+            <p>{{session('message')}}</p>
+        @endif
+    </div>
 </div>

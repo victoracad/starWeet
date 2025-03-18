@@ -19,5 +19,7 @@ Route::get('/modal-content', [ModalController::class, 'loadContent'])->name('mod
 Route::get('/confirm-code', [AuthController::class, 'ConfirmCode'])->name('ConfirmCode');
 Route::get('/createcodemail', [AuthController::class, 'CreateCod'])->name('verifyCodMai');
 Route::get('/createUser', [AuthController::class, 'CreateUser'])->name('CreateUser');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/login-action', [AuthController::class, 'login'])->name('login.action');
 
 
