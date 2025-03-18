@@ -36,6 +36,7 @@
 
     
 </div>
+
 <script>
     function openModal(modalName) {
         $.ajax({
@@ -48,8 +49,6 @@
             }
         });
     }
-
-
 
     function emailCod() {
                 event.preventDefault(); 
@@ -70,7 +69,6 @@
                 });
     }
 
-
     function ConfirmCod(){
         event.preventDefault(); 
         $("#modalBody").addClass("hidden");
@@ -84,15 +82,11 @@
                   dateBirthday: $("#dateBirthday").val()
             },
             success: function(response) {
-                //alert('voltou');
                 $("#loading").hide();
                 $("#modalBody").removeClass("hidden");
                 if (response.viewType === 'passwordview') {
-                    alert("Primeira view chegou");
                     $("#modalBody").html(response.view);
-                } else /*if (response.viewType === 'authcodeview')*/ {
-                    alert("Segunda view chegou");
-                    alert(response.view);
+                } else{
                     $("#modalBody").html(response.view);
                 }
                 
@@ -131,6 +125,7 @@
     function fecharModal() {
         $("#modalOverlay").addClass("hidden");
     }
+
     function userLogin(){
         event.preventDefault(); 
         $("#modalBody").addClass("hidden");

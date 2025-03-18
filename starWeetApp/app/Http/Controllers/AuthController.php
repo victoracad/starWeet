@@ -69,17 +69,7 @@ class AuthController extends Controller
                 'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
                 'viewType' => 'authcodeview'
             ]);
-            //return ;
-            /*return response()->json([
-                'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
-                'viewType' => 'authcodeview'
-            ]);
-            return response()->json([
-                'view' => view('partials.authcode-modal'),
-                'viewType' => 'authcodeview'
-            ]);*/
-            
-            //return view('partials.authcode-modal');
+   
         }
 
     }
