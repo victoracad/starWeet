@@ -5,7 +5,7 @@
         <div class="border-2 border-green-500 p-3">
             <nav class="flex flex-col">
                 <a href="/home">HOME</a>
-                <a href="/user/{{$user->username}}">Profile</a>
+                <a href="/user/{{$userAuth->username}}">Profile</a>
             </nav>
         </div>
         <div class="border-2 border-blue-500 p-3">

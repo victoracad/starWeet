@@ -111,7 +111,6 @@
             success: function(data) {
                 $("#loading").hide();
                 $("#modalBody").removeClass("hidden");
-                //window.location.href = '/home'; // Redireciona para a URL recebida
                 if(data){
                     $("#modalBody").html(data);
                 }else{

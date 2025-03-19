@@ -80,6 +80,7 @@ class AuthController extends Controller
         $name = $request->input('name') . strtoupper(Str::random(10));
         $dateBirthday = $request->input('dateBirthday');
         $password = $request->input('password');
+
         if(!User::where('email', $email)->first()){
             User::create([
                 'username' => $name,
@@ -94,14 +95,12 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password]))
 	    {
-            $user = Auth::user();
-            //return '<h1>Deu certo</h1>';
+            $user = Auth::user();;
             return ;
-            //return redirect('/home')->with(['message' => 'Usuario fez login com sucesso', 'user' => $user]);
         }
     }
     public function homePage(){
-        return view('home', ['user' => Auth::user()]);
+        return view('home', ['user' => Auth::user(), 'userAuth' => Auth::user()]);
     }
     public function logout(Request $request){
         Auth::logout(); 
@@ -122,6 +121,35 @@ class AuthController extends Controller
         }
         session()->flash('messageErrorLogin', 'Email ou senha errados');
         return view('partials.login-modal');
+    }
+    
+    public function imageTreat($requestImage, $path){
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $requestImage->move(public_path('img/'. $path), $imageName);
+            return $imageName;
+    }
+    public function updateProfile(Request $request){
+        if($request->hasFile('avatar_image') && $request->file('avatar_image')->isValid()){
+            $imageName = $this->imageTreat($request->avatar_image, 'avatar_images');
+            Auth::user()->profile->update([
+                'avatar_image' => $imageName
+            ]);
+        }
+        if($request->hasFile('cover_image') && $request->file('cover_image')->isValid()){
+            $imageName = $this->imageTreat($request->cover_image, 'cover_images');
+            Auth::user()->profile->update([
+                'cover_image' => $imageName
+            ]);
+        }
+        
+        Auth::user()->profile->update([
+            'name' => $request->name,
+            'bio' => $request->bio, 
+            'location' => $request->location,
+            'website' => $request->website,
+        ]);
+        return redirect('/edit_profile');
     }
     
 }
