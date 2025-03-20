@@ -8,12 +8,12 @@ function CreatePost(e){
         e.preventDefault();
         $("#modalHome").addClass("hidden");
         $("#loading").show();
-        var formData = new FormData(); // Criando o objeto FormData
+        var formData = new FormData(); 
         var file = $("#post_image")[0].files[0];
 
-        formData.append("content", $("#content").val()); // Adicionando o conteúdo do post
+        formData.append("content", $("#content").val()); 
         if (file) {
-            formData.append("post_image", file); // Adicionando a imagem (se existir)
+            formData.append("post_image", file); 
         }
         formData.append("_token", $('meta[name="csrf-token"]').attr("content"));
         $.ajax({

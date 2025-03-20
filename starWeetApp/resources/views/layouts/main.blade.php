@@ -5,11 +5,15 @@
             <nav class="flex flex-col">
                 <a href="/home">HOME</a>
                 <a href="/user/{{$userAuth->username}}">Profile</a>
-                <button class="border-2 border-amber-500 cursor-pointer" onclick="openPostCreate()">Teste</button>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit">Sair</button>
+                </form>
+                <button class="border-2 border-amber-500 cursor-pointer" onclick="openPostCreate()">Postar</button>
             </nav>
         </div>
-        <div class="border-2 border-blue-500 p-3">
-            feed sec
+        <div class="border-2 border-blue-500 ">
+            <h1>Últimas postagens</h1>
             @yield('home')
         </div>
         <div class="border-2 border-yellow-500 p-3">

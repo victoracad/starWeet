@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\EmailVerification;
+use App\Models\Post;
 use App\Mail\emailAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -100,7 +101,8 @@ class AuthController extends Controller
         }
     }
     public function homePage(){
-        return view('home', ['user' => Auth::user(), 'userAuth' => Auth::user()]);
+        $posts = Post::orderBydesc('id')->get();
+        return view('home', ['userAuth' => Auth::user(), 'posts' => $posts]);
     }
     public function logout(Request $request){
         Auth::logout(); 
