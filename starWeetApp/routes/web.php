@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Mail\emailAuth;
 
 /** PAGES */
@@ -24,5 +25,5 @@ Route::get('/createUser', [AuthController::class, 'CreateUser'])->name('CreateUs
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/login-action', [AuthController::class, 'login'])->name('login.action');
 Route::post('/update_profile', [AuthController::class, 'updateProfile'])->name('update.profile');
-
+Route::post('/createPost', [PostController::class, 'createPost'])->name('createPost');
 

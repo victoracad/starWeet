@@ -12,9 +12,6 @@ class PageController extends Controller
         return view('welcome');
     }
     public function userPage($user){
-        //dd($user);
-        //dd(User::where('username', $user)->first());
-        //dd(Auth::user()->username);
         if(Auth::user()->username == $user){
             return view('myprofile', ['user' => User::with('profile')->where('username', $user)->first(), 'userAuth' => Auth::user()]);
         }
