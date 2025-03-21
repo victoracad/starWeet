@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Mail\emailAuth;
 
 /** PAGES */
@@ -27,4 +28,6 @@ Route::get('/login-action', [AuthController::class, 'login'])->name('login.actio
 Route::post('/update_profile', [AuthController::class, 'updateProfile'])->name('update.profile');
 Route::post('/createPost', [PostController::class, 'createPost'])->name('createPost');
 Route::get('/like/{post_id}', [PostController::class, 'like'])->name('like');
+Route::get('/follow/{user_id}', [UserController::class, 'follow'])->name('follow');
+Route::get('/unfollow/{user_id}', [UserController::class, 'unfollow'])->name('unfollow');
 

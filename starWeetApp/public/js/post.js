@@ -69,3 +69,36 @@ function openModal(modalName, post_id) {
         }
     });
 }
+
+function followUser(user_id){
+    //$("btn-follow").addClass("hidden");
+    
+    $.ajax({
+        url: "/follow/" + user_id,  
+        type: "GET", 
+        headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" },
+        success: function(data) {
+            //alert(data.message);
+            $("#btn-follow").addClass("hidden");
+            $("#btn-unfollow").removeClass("hidden");
+        }, 
+        error: function(){
+            alert('deu errado');
+        }
+    });
+}
+function unfollowUser(user_id){
+    $.ajax({
+        url: "/unfollow/" + user_id,  
+        type: "GET", 
+        headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" },
+        success: function(data) {
+            //alert(data.message);
+            $("#btn-unfollow").addClass("hidden");
+            $("#btn-follow").removeClass("hidden");
+        }, 
+        error: function(){
+            alert('deu errado');
+        }
+    });
+}

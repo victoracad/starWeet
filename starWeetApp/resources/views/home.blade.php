@@ -4,7 +4,7 @@
 @foreach ($posts as $post)
     <div class="w-full h-40 border grid grid-flow-rol grid-cols-13">
         <div class="border col-span-2"> 
-            <img class="rounded-full" src="/img/avatar_images/placeholder.png" alt="">
+            <img class="rounded-full" src="/img/avatar_images/{{$post->user->profile->avatar_image}}" alt="">
         </div>
         <div class="border col-span-9">
             <div>
@@ -15,12 +15,18 @@
             @if($post->post_image != null)
                 <img class="w-40 h-20" src="/img/post_images/{{$post->post_image}}" alt="">
             @endif
-            <div>
+            <div class="flex flex-row">
                 <button class="border">comentar</button>
                 <button id="like-button " class="cursor-pointer" onclick="like({{ $post->id }})" data-post-id="{{ $post->id }}">
                     👍 <span id="like-count_{{$post->id}}">{{ $post->likes->count() }}</span>
                 </button>
                 <button onclick="openModal('usersLikes', {{$post->id}})" class="border cursor-pointer">Quem curtiu...</button>
+                <div>
+                    Horário
+                </div>
+                <span>
+                    {{$post->created_at}}
+                </span>
             </div>
         </div>
         <div class="border col-span-2">
