@@ -19,6 +19,19 @@
         <div class="border-2 border-yellow-500 p-3">
             <div>
                 <h1>Quem Seguir</h1>
+                @foreach ($users as $user)
+                <a href="/user/{{$user->username}}">
+                    <div class="flex flex-row">
+                        <div>
+                            <img class="w-10 h-10" src="/img/avatar_images/{{$user->profile->avatar_image}}" alt="">
+                        </div>
+                        <div>
+                            <span>{{$user->profile->name}}</span>
+                            <span>{{'@'.$user->username}}</span>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
             </div>
         </div>
 

@@ -17,9 +17,9 @@ class PageController extends Controller
         $posts = Post::where('user_id', User::where('username', $user)->value('id'))->orderByDesc('id')->get();
 
         if(Auth::user()->username == $user){
-            return view('myprofile', ['user' => User::with('profile')->where('username', $user)->first(), 'userAuth' => Auth::user(), 'posts' => $posts]);
+            return view('myprofile', ['user' => User::with('profile')->where('username', $user)->first(), 'userAuth' => Auth::user(), 'posts' => $posts, 'users' => User::all()]);
         }
-        return view('profile', ['user' => User::with('profile')->where('username', $user)->first(), 'userAuth' => Auth::user(), 'posts' => $posts]);
+        return view('profile', ['user' => User::with('profile')->where('username', $user)->first(), 'userAuth' => Auth::user(), 'posts' => $posts, 'users' => User::all()]);
     }
     public function editProfilePage(){
         return view('editProfile', ['user' => User::with('profile')->where('username', Auth::user()->username)->first(), 'userAuth' => Auth::user()]);
