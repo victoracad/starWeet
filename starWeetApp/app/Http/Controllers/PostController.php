@@ -47,4 +47,16 @@ class PostController extends Controller
             return response()->json(['liked' => true, 'likes_count' => Post::find($post_id)->likes()->count()]);
         }
     }
+    public function destroy($id)
+{
+    $post = Post::find($id);
+
+    if (!$post) {
+        return response()->json(['message' => 'Post não encontrado'], 404);
+    }
+
+    $post->delete();
+
+    return response()->json(['message' => 'Post deletado com sucesso']);
+}
 }

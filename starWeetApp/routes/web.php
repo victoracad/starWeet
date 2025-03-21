@@ -30,4 +30,5 @@ Route::post('/createPost', [PostController::class, 'createPost'])->name('createP
 Route::get('/like/{post_id}', [PostController::class, 'like'])->name('like');
 Route::get('/follow/{user_id}', [UserController::class, 'follow'])->name('follow');
 Route::get('/unfollow/{user_id}', [UserController::class, 'unfollow'])->name('unfollow');
+Route::delete('/delete/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 

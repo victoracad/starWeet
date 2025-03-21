@@ -102,3 +102,27 @@ function unfollowUser(user_id){
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-post").forEach(button => {
+        button.addEventListener("click", function () {
+            let postId = this.dataset.id;
+            let postElement = document.getElementById(`post-${postId}`);
+
+            fetch(`/delete/posts/${postId}`, {
+                method: "DELETE",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    postElement.remove();
+                }
+            })
+            .catch(error => console.error("Erro ao excluir:", error));
+        });
+    });
+});

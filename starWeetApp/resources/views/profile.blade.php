@@ -50,6 +50,7 @@
         </div>
         <div class="border col-span-2">
             <button>Compartilhar</button>
+  
         </div>
     </div>
 @endforeach
