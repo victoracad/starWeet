@@ -26,4 +26,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::get('/login-action', [AuthController::class, 'login'])->name('login.action');
 Route::post('/update_profile', [AuthController::class, 'updateProfile'])->name('update.profile');
 Route::post('/createPost', [PostController::class, 'createPost'])->name('createPost');
+Route::get('/like/{post_id}', [PostController::class, 'like'])->name('like');
 

@@ -17,7 +17,10 @@
             @endif
             <div>
                 <button class="border">comentar</button>
-                <button class="border">Likar</button>
+                <button id="like-button " class="cursor-pointer" onclick="like({{ $post->id }})" data-post-id="{{ $post->id }}">
+                    👍 <span id="like-count_{{$post->id}}">{{ $post->likes->count() }}</span>
+                </button>
+                <button onclick="openModal('usersLikes', {{$post->id}})" class="border cursor-pointer">Quem curtiu...</button>
             </div>
         </div>
         <div class="border col-span-2">
@@ -25,5 +28,11 @@
         </div>
     </div>
 @endforeach
+
+<div onclick="closeModalPosts()" id="modalPosts" class="hidden bg-gray-300/50 fixed inset-0 flex justify-center items-center">
+    <div onclick="event.stopPropagation()" id="modalBody" class="bg-white w-90 h-120 rounded-2xl p-2 overflow-scroll flex flex-col  gap-5 ">
+        
+    </div>
+</div>
     
 @endsection

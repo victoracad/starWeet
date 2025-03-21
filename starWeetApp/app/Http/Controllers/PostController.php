@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -32,5 +33,18 @@ class PostController extends Controller
             'content' => $request->content,
         ]);
         return ;
+    }
+    public function like($post_id){
+
+        if (!Auth::user()) {
+            return response()->json(['error' => 'Usuário não autenticado'], 401);
+        }
+        if (Post::find($post_id)->likes()->where('user_id', Auth::id())->exists()) {
+            Post::find($post_id)->likes()->where('user_id', Auth::id())->delete();
+            return response()->json(['liked' => false, 'likes_count' => Post::find($post_id)->likes()->count()]);
+        } else {
+            Post::find($post_id)->likes()->create(['user_id' => Auth::id(), 'post_id' => $post_id]);
+            return response()->json(['liked' => true, 'likes_count' => Post::find($post_id)->likes()->count()]);
+        }
     }
 }

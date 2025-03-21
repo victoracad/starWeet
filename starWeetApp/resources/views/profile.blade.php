@@ -29,7 +29,7 @@
             @endif
             <div>
                 <button class="border">comentar</button>
-                <button class="border">Likar</button>
+                <button class="border">Lika</button>
             </div>
         </div>
         <div class="border col-span-2">

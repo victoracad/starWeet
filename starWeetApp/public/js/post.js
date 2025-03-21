@@ -35,3 +35,37 @@ function CreatePost(e){
             }
         });
 }
+
+function like(postId){
+        let likeCount = $("#like-count_"+postId);
+        $.ajax({
+            url: "/like/" + postId,
+            type: "GET",
+            headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" },
+            success: function(response) {
+                likeCount.text(response.likes_count);
+            },
+            error: function(xhr) {
+                alert("Erro: " + xhr.responseJSON.error);
+            }
+        });
+}
+function closeModalPosts(){
+    $("#modalPosts").addClass("hidden");
+}
+function openModal(modalName, post_id) {
+    $.ajax({
+        url: "/modal-content",  
+        type: "GET",
+        data: { modal: modalName,
+                post_id: post_id
+         },  
+        success: function(data) {
+            $("#modalBody").html(data);
+            $("#modalPosts").removeClass("hidden");
+        }, 
+        error: function(){
+            alert('deu errado');
+        }
+    });
+}

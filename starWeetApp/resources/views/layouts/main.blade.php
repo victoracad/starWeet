@@ -17,7 +17,9 @@
             @yield('home')
         </div>
         <div class="border-2 border-yellow-500 p-3">
-            extra bar
+            <div>
+                <h1>Quem Seguir</h1>
+            </div>
         </div>
 
         <!--MODAL POST-->
