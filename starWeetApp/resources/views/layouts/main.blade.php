@@ -1,7 +1,8 @@
 @extends('layouts.header')
 @section('content')
-    <section class=" border-2 border-green-500 w-full h-lvh grid grid-flow-row grid-cols-3 gap-2  ">
-        <div class="border-2 border-green-500 p-3">
+    <section class=" border w-screen h-screen flex">
+
+        <div class="fixed left-0 border-r-1 border-gray-600 top-0 w-1/3 h-full bg-black text-white flex items-center justify-center">
             <nav class="flex flex-col">
                 <a href="/home">HOME</a>
                 <a href="/user/{{$userAuth->username}}">Profile</a>
@@ -12,11 +13,12 @@
                 <button class="border-2 border-amber-500 cursor-pointer" onclick="openPostCreate()">Postar</button>
             </nav>
         </div>
-        <div class="border-2 border-blue-500 ">
-            <h1>Últimas postagens</h1>
+
+        <div class="flex-col ml-[33%] mr-[33%]  text-center flex">
             @yield('home')
         </div>
-        <div class="border-2 border-yellow-500 p-3">
+
+        <div class="fixed right-0 top-0 w-1/3 h-full border-l-1 border-gray-600  bg-black text-white flex items-center justify-center">
             <div>
                 <h1>Quem Seguir</h1>
                 @foreach ($users as $user)
@@ -35,8 +37,9 @@
             </div>
         </div>
 
+
         <!--MODAL POST-->
-        <div id="modalPost" class="hidden w-full h-lvh bg-gray-300/50 fixed flex justify-center items-top" onclick="closePostCreate()">
+        <div id="modalPost" class="hidden w-full h-lvh  bg-gray-300/50 fixed flex justify-center items-top" onclick="closePostCreate()">
             <div onclick="event.stopPropagation()" class="w-150 h-70 bg-white mt-20 p-3">
                 <div>
                     <button onclick="closePostCreate()" class="cursor-pointer">Fechar</button>
