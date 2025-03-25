@@ -102,7 +102,8 @@ class AuthController extends Controller
     }
     public function homePage(){
         $posts = Post::orderBydesc('id')->get();
-        return view('home', ['userAuth' => Auth::user(), 'posts' => $posts, 'users' => User::all()]);
+        return view('home', ['userAuth' => Auth::user(), 'posts' => $posts, 'users' => User::limit(3)->get()
+    ]);
     }
     public function logout(Request $request){
         Auth::logout(); 

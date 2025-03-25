@@ -126,3 +126,67 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+function updateCount(element) {
+    const textarea = document.getElementById("content");
+    const charCount = document.getElementById("charCount");
+    charCount.textContent = `${textarea.value.length}/256 caracteres`;
+    //alert(element.scrollHeight);
+    element.style.height = "auto"; // Reseta a altura
+    element.style.height = (element.scrollHeight) + "px";
+}
+
+function previewImage() {
+    const file = document.getElementById('post_image').files[0];
+    const reader = new FileReader();
+
+    document.getElementById('post_image').value = '';
+    
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        const DivimagePreview = document.getElementById('DivimagePreview');
+        imagePreview.src = e.target.result; // Define a imagem carregada
+        DivimagePreview.classList.remove('hidden'); // Torna a imagem visível
+        imagePreview.classList.remove('hidden'); // Torna a imagem visível
+    }
+
+    if (file) {
+        reader.readAsDataURL(file); // Lê a imagem como URL
+    }
+}
+function closeImagePreview(){
+
+    const imagePreview = document.getElementById('imagePreview');
+    const DivimagePreview = document.getElementById('DivimagePreview');
+    DivimagePreview.classList.add('hidden'); // Torna a imagem visível
+    imagePreview.classList.add('hidden');
+
+}
+function previewImageEditCoverImage(){
+    const file = document.getElementById('cover_image').files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('cover_image_preview');
+        imagePreview.src = e.target.result; // Define a imagem carregada
+    }
+
+    if (file) {
+        reader.readAsDataURL(file); // Lê a imagem como URL
+    }
+}
+function previewImageEditAvatarImage(){
+    const file = document.getElementById('avatar_image').files[0];
+    const reader = new FileReader();
+
+    document.getElementById('avatar_image').value = '';
+    
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('avatar_image_preview');
+        imagePreview.src = e.target.result; // Define a imagem carregada
+    }
+
+    if (file) {
+        reader.readAsDataURL(file); // Lê a imagem como URL
+    }
+}
