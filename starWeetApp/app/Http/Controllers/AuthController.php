@@ -36,7 +36,6 @@ class AuthController extends Controller
     public function CreateCod(Request $request){
         $email = $request->input('email');
         $name = $request->input('name');
-        $dateBirthday = $request->input('dateBirthday');
         $emailVerificationCode = strtoupper(Str::random(6));
         EmailVerification::create([
             'email' => $email,
@@ -49,37 +48,32 @@ class AuthController extends Controller
         ];
         Mail::to($email)->send(new emailAuth($dados));
         
-        return view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday]);
+        return view('partials.authcode-modal', ['email' => $email, 'name' => $name]);
     }
     public function ConfirmCode(Request $request){
         $email = $request->input('email');
         $name = $request->input('name') ;
-        $dateBirthday = $request->input('dateBirthday');
         $codeVerify = $request->input('verification_code');
         $codVerify = EmailVerification::where('email', $email)->where('verification_code', $codeVerify)->first();
 
         if ($codVerify) {
             return response()->json([
-                'view' => view('partials.password-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
+                'view' => view('partials.password-modal', ['email' => $email, 'name' => $name])->render(),
                 'viewType' => 'passwordview'
             ]);
-            //return view('partials.password-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday]);
         } else {
             session()->flash('messageErrorCode', 'Código de verificação inválido');
             
             return response()->json([
-                'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name, 'dateBirthday' => $dateBirthday])->render(),
+                'view' => view('partials.authcode-modal', ['email' => $email, 'name' => $name])->render(),
                 'viewType' => 'authcodeview'
             ]);
-   
         }
 
     }
     public function CreateUser(Request $request){
-        //return view('partials.register-modal');
         $email = $request->input('email');
         $name = $request->input('name') . strtoupper(Str::random(10));
-        $dateBirthday = $request->input('dateBirthday');
         $password = $request->input('password');
 
         if(!User::where('email', $email)->first()){

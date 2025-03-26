@@ -103,6 +103,8 @@ function unfollowUser(user_id){
     });
 }
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-post").forEach(button => {
         button.addEventListener("click", function () {
