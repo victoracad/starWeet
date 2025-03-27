@@ -1,4 +1,5 @@
 # Projeto: Rede Social
+
 ## 📸 Imagens do Projeto
 Aqui estão algumas capturas de tela do projeto:
 
@@ -6,6 +7,7 @@ Aqui estão algumas capturas de tela do projeto:
 <img src="caminho-para-imagem2.png" alt="Página de Postagens" width="600">
 
 ---
+
 ## Descrição
 Este projeto tem como objetivo a criação de uma **rede social**, implementando funcionalidades essenciais como:
 - Publicação de postagens (com ou sem imagem);
@@ -18,7 +20,8 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 
 ### **Backend**
 - **Laravel**: Framework PHP utilizado para construção da API e lógica do sistema.
-- **Envio de e-mail automático**: Implementado com Laravel.
+- **MySQL + phpMyAdmin**: Gerenciamento do banco de dados da aplicação.
+- **Envio de e-mail automático**: Implementado com Laravel, utilizando autenticação via senha de aplicativo do Gmail.
 - **Processamento assíncrono**: Requisições AJAX para otimizar a interação com o backend.
 
 ### **Frontend**
@@ -29,4 +32,3 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 ### **Controle de Versão**
 - **Git & GitHub**: Versionamento e hospedagem do código.
 - **GitHub Desktop**: Gerenciamento visual das branches e commits.
-
