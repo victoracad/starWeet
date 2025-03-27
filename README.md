@@ -12,7 +12,7 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 
 ### **Backend**
 - **Laravel**: Framework PHP utilizado para construção da API e lógica do sistema.
-- **Envio de e-mail automático**: Implementado com Laravel, utilizando autenticação via senha de aplicativo do Gmail.
+- **Envio de e-mail automático**: Implementado com Laravel.
 - **Processamento assíncrono**: Requisições AJAX para otimizar a interação com o backend.
 
 ### **Frontend**
@@ -24,8 +24,3 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 - **Git & GitHub**: Versionamento e hospedagem do código.
 - **GitHub Desktop**: Gerenciamento visual das branches e commits.
 
-## Instalação e Configuração
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
