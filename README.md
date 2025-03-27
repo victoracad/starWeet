@@ -1,2 +1,2 @@
-# starWeet
+# starSweet
  Projeto com intuito de desenvolver uma redesocial
