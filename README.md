@@ -13,7 +13,6 @@ Este projeto tem como objetivo a criação de uma **rede social**, implementando
 - Publicação de postagens (com ou sem imagem);
 - Curtir postagens;
 - Seguir e deixar de seguir usuários;
-- Notificação via e-mail para novos seguidores e interações.
 
 ## Tecnologias Utilizadas
 O desenvolvimento do projeto utilizou as seguintes tecnologias:
