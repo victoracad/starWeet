@@ -1,7 +1,7 @@
 # Projeto: Rede Social
 
 ## 📸 Imagens do Projeto
-Aqui estão algumas capturas de tela do projeto:
+Aqui estão algumas capturas de tela do projeto: </br>
 <img  src="https://drive.google.com/uc?export=view&id=1-Fk_o6sHFduvirzHFNQ2R_meoh7TDIuk" alt="Tela de Login" width="500px">
 <img  src="https://drive.google.com/uc?export=view&id=1-D-8Je31rkGyG4EC8Mrx3gNdsdPqAKbw" alt="Tela de Login" width="500px">
 <img  src="https://drive.google.com/uc?export=view&id=1-EmOexHGaCpJ80hLQqAGh9h2HuePIrHl" alt="Tela de Login" width="800px">
