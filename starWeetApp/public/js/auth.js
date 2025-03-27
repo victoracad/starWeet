@@ -1,6 +1,9 @@
 
+/**SISTEMA DE AUTENTICAÇÃO, CODIGOS DE ASSINCRONISMO E TESTE NO FRONTEND */
 var nameRequired = false;
 var emailRequired = false;
+var codRequired = false;
+var passRequired = false;
 document.addEventListener("input", function (event) { //Função verifica se o campo email está certo (MODAL: REGISTER)
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (event.target && event.target.id === "email") {
@@ -10,6 +13,8 @@ document.addEventListener("input", function (event) { //Função verifica se o c
             $("#email").addClass("border-red-500");
             $("#btn-sendEmail").removeClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]")
             $("#btn-sendEmail").addClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+            $("#btn-login").removeClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]")
+            $("#btn-login").addClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
             emailRequired = false
         }else{
             $("#email").removeClass("border-[#9e9e9e] border-red-500");
@@ -18,6 +23,10 @@ document.addEventListener("input", function (event) { //Função verifica se o c
             if(nameRequired && emailRequired){
                 $("#btn-sendEmail").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
                 $("#btn-sendEmail").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
+            }
+            if(emailRequired && passRequired){
+                $("#btn-login").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+                $("#btn-login").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
             }
         }
     }
@@ -37,6 +46,50 @@ document.addEventListener("input", function (event) { //Função verifica se o c
             if(nameRequired && emailRequired){//Os dois campos estão preechidos corretamente
                 $("#btn-sendEmail").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
                 $("#btn-sendEmail").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
+            }
+        }
+    }
+});
+document.addEventListener("input", function (event) { //Função verifica se o campo verification_code está certo (MODAL: AUTHCODE)
+    if (event.target && event.target.id === "verification_code") {
+        if($("#verification_code").val().split('').length < 6 ){ //Input do Código não está certo
+            $("#verification_code").removeClass("border-[#9e9e9e] border-red-500");
+            $("#verification_code").addClass("border-red-500");
+            $("#btn_confirmcode").removeClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]")
+            $("#btn_confirmcode").addClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+            codRequired = false
+        }else{ //input name ESTá certo
+            $("#verification_code").removeClass("border-[#9e9e9e] border-red-500");
+            $("#verification_code").addClass("border-[#1a73e8]"); 
+            codRequired = true
+            if(codRequired){//Os dois campos estão preechidos corretamente
+                $("#btn_confirmcode").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+                $("#btn_confirmcode").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
+            }
+        }
+    }
+});
+document.addEventListener("input", function (event) { //Função verifica se o campo password está certo (MODAL: PASSWORD)
+    if (event.target && event.target.id === "password") {
+        if($("#password").val().split('').length < 8 ){ //Input do Password não está certo
+            $("#password").removeClass("border-[#9e9e9e] border-red-500");
+            $("#password").addClass("border-red-500");
+            $("#btn_createuser").removeClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]")
+            $("#btn_createuser").addClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+            $("#btn-login").removeClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]")
+            $("#btn-login").addClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+            passRequired = false
+        }else{ //input password ESTÁ certo
+            $("#password").removeClass("border-[#9e9e9e] border-red-500");
+            $("#password").addClass("border-[#1a73e8]"); 
+            passRequired = true
+            if(passRequired){//Os dois campos estão preechidos corretamente
+                $("#btn_createuser").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+                $("#btn_createuser").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
+            }
+            if(emailRequired && passRequired){
+                $("#btn-login").removeClass("bg-[#9e9e9e]/50 border-[#9e9e9e]")
+                $("#btn-login").addClass("border-[#1a73e8] cursor-pointer bg-[#1a73e8]");
             }
         }
     }
@@ -122,3 +175,46 @@ document.addEventListener("click", function (event) { //Função que verifica o 
         }
     }
 });
+document.addEventListener("click", function (event) { //Função que verifica o campo de senha e cria o usuário   
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (event.target && event.target.id === "btn-login"){
+        if($("#email").val() != '' && regex.test($("#email").val()) && $("#password").val().split('').length > 7 ){
+            event.preventDefault(); 
+            $("#modalBody").addClass("hidden");
+            $("#loading").show();
+            $.ajax({
+                url: "/login-action",  
+                type: "GET",
+                data: { email: $("#email").val(),
+                        password: $("#password").val(),
+                },
+                success: function(data) {
+                    $("#loading").hide();
+                    $("#modalBody").removeClass("hidden");
+                    if(data){
+                        $("#modalBody").html(data);
+                    }else{
+                        window.location.href = '/home';
+                    }
+                }
+            });
+        }
+    }
+});
+document.addEventListener("click", function (event) { //Função que fecha o Modal de autenticação   
+    if (event.target && event.target.id === "closeModal" || event.target && event.target.id === "modalOverlay"){
+        $("#modalOverlay").addClass("hidden");
+    }
+});
+
+function openModal(modalName) {
+    $.ajax({
+        url: "/modal-content",  
+        type: "GET",
+        data: { modal: modalName },  
+        success: function(data) {
+            $("#modalBody").html(data);
+            $("#modalOverlay").removeClass("hidden");
+        }
+    });
+}

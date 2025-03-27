@@ -1,5 +1,5 @@
 <div class=" h-full flex flex-col p-5 bg-black rounded-lg shadow-md">
-    <div class="text-white text-3xl font-bold flex flex-col">
+    <div class="text-white text-2xl font-bold flex flex-col mb-5">
         <h2>Enviamos um email para:</h2>
         <span>{{$email}}</span>
     </div>
@@ -12,7 +12,7 @@
             <input type="text" id="verification_code" name="verification_code" autocomplete="off" placeholder="REQ2QW" maxlength="6" class="input border border-[#9e9e9e] w-full h-12" required>
             <label for="name" class="user-label">Código</label>
         </div>
-        <button id="btn_confirmcode" class="cursor-pointer w-full h-12 border-2 border-[#9e9e9e] flex justify-center items-center rounded-2xl" type="button">Verificar email</button>
+        <button id="btn_confirmcode" class="w-full h-12 border-2 border-[#9e9e9e] bg-[#9e9e9e]/50 flex justify-center items-center rounded-2xl" type="button">Verificar email</button>
     </form>
     <div>
         @if (session('messageErrorCode'))
