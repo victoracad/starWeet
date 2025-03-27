@@ -37,7 +37,7 @@
         <input class="p-2 border cursor-pointer w-40 rounded-2xl hover:bg-[#1a73e8]" type="submit" value="Salvar">
     </div>
     
-
+<img width="" src="" alt="">
 </form>
 <h1>este é o meu Profile</h1> 
 @endsection

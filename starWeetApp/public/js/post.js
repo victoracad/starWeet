@@ -140,7 +140,7 @@ function previewImage() {
     const file = document.getElementById('post_image').files[0];
     const reader = new FileReader();
 
-    document.getElementById('post_image').value = '';
+    //document.getElementById('post_image').value = '';
     
     reader.onload = function(e) {
         const imagePreview = document.getElementById('imagePreview');
@@ -155,7 +155,7 @@ function previewImage() {
     }
 }
 function closeImagePreview(){
-
+    document.getElementById('post_image').value = '';
     const imagePreview = document.getElementById('imagePreview');
     const DivimagePreview = document.getElementById('DivimagePreview');
     DivimagePreview.classList.add('hidden'); // Torna a imagem visível
@@ -178,8 +178,6 @@ function previewImageEditCoverImage(){
 function previewImageEditAvatarImage(){
     const file = document.getElementById('avatar_image').files[0];
     const reader = new FileReader();
-
-    document.getElementById('avatar_image').value = '';
     
     reader.onload = function(e) {
         const imagePreview = document.getElementById('avatar_image_preview');
