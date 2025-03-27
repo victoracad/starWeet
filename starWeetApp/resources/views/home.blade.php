@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'home')   
 @section('home')
+<!--NA HOME APRESENTA SOMENTE OS POSTs-->
 @foreach ($posts as $post)
 
     <div class="w-full h-auto text-green-50 border-t-1 border-gray-500 grid grid-flow-rol grid-cols-12">
@@ -10,8 +11,6 @@
                     <img class="w-full h-full object-cover" src="/img/avatar_images/{{$post->user->profile->avatar_image}}" alt="">
                 </div>
             </a>
-            
-            
         </div>
 
         <div class="col-span-8 flex flex-col gap-3 mt-2 ">
@@ -41,7 +40,7 @@
                     <button id="like-button " class="cursor-pointer" onclick="like({{ $post->id }})" data-post-id="{{ $post->id }}">
                         <i class="material-icons cursor-pointer hover:text-blue-400">favorite</i> 
                     </button>
-                    <span class="cursor-pointer" onclick="openModal('usersLikes', {{$post->id}})" id="like-count_{{$post->id}}">{{ $post->likes->count() }}</span>
+                    <span class="cursor-pointer" onclick="openModalLike('usersLikes', {{$post->id}})" id="like-count_{{$post->id}}">{{ $post->likes->count() }}</span>
                 </div>
                 <div class="flex justify-center gap-1 text-gray-400">
                     <i class="material-icons">schedule</i> 

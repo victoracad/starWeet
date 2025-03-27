@@ -53,7 +53,7 @@ function like(postId){
 function closeModalPosts(){
     $("#modalPosts").addClass("hidden");
 }
-function openModal(modalName, post_id) {
+function openModalLike(modalName, post_id) {
     $.ajax({
         url: "/modal-content",  
         type: "GET",
@@ -102,8 +102,6 @@ function unfollowUser(user_id){
         }
     });
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-post").forEach(button => {
