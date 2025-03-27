@@ -3,7 +3,7 @@
 ## 📸 Imagens do Projeto
 Aqui estão algumas capturas de tela do projeto:
 
-<img  src="https://drive.google.com/uc?export=view&id=1-D-8Je31rkGyG4EC8Mrx3gNdsdPqAKbw" alt="">
+<img  src="https://drive.google.com/uc?export=view&id=1-D-8Je31rkGyG4EC8Mrx3gNdsdPqAKbw" alt="Tela de Login" width="200px">
 <img src="caminho-para-imagem2.png" alt="Página de Postagens" width="600">
 
 ---
