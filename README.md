@@ -31,3 +31,14 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 ### **Controle de Versão**
 - **Git & GitHub**: Versionamento e hospedagem do código.
 - **GitHub Desktop**: Gerenciamento visual das branches e commits.
+
+# Como iniciar o projeto no seu Desktop
+
+Este guia irá ajudá-lo a configurar e rodar o projeto corretamente no seu ambiente local.
+
+## 1. Clonando o Repositório
+
+Primeiro, clone o repositório do GitHub para o seu computador usando o seguinte comando:
+
+```sh
+git clone https://github.com/victoracad/starWeet.git
