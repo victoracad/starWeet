@@ -31,3 +31,96 @@ O desenvolvimento do projeto utilizou as seguintes tecnologias:
 ### **Controle de Versão**
 - **Git & GitHub**: Versionamento e hospedagem do código.
 - **GitHub Desktop**: Gerenciamento visual das branches e commits.
+
+# Como iniciar o projeto no seu Desktop
+
+Este guia irá ajudá-lo a configurar e rodar o projeto corretamente no seu ambiente local.
+
+## 1. Clonando o Repositório
+
+Primeiro, clone o repositório do GitHub para o seu computador usando o seguinte comando:
+
+```sh
+git clone https://github.com/victoracad/starWeet.git
+```
+
+Depois, entre na pasta do projeto:
+
+```sh
+cd starWeet
+```
+
+## 2. Instalando o XAMPP
+
+O projeto utiliza **servidor Apache e MySQL**, que podem ser configurados utilizando o **XAMPP**. Se você ainda não o possui instalado, siga os passos abaixo:
+
+1. Baixe o XAMPP no site oficial: [https://www.apachefriends.org/](https://www.apachefriends.org/)
+2. Instale o XAMPP e inicie os serviços **Apache** e **MySQL** pelo painel de controle.
+
+Isso garantirá que o servidor e o banco de dados estejam rodando corretamente.
+
+## 3. Instalando o Laravel
+
+Certifique-se de que você tenha o **Composer** instalado. Se não tiver, baixe e instale pelo site oficial:
+
+[https://getcomposer.org/](https://getcomposer.org/)
+
+Após instalar o Composer, dentro da pasta do projeto, execute o seguinte comando para instalar as dependências do Laravel:
+
+```sh
+composer install
+```
+
+## 4. Instalando o Node.js
+
+O **Tailwind CSS** já está configurado no repositório, então não há necessidade de instalá-lo novamente. No entanto, para rodá-lo corretamente, precisamos do **Node.js**.
+
+Se você ainda não tem o **Node.js**, baixe e instale a versão mais recente no site oficial:
+
+[https://nodejs.org/](https://nodejs.org/)
+
+Após a instalação, dentro da pasta do projeto, instale as dependências do Node.js:
+
+```sh
+npm install
+```
+
+## 5. Configurando o ambiente
+
+Antes de rodar o projeto, configure o arquivo `.env` com suas credenciais do banco de dados. Caso não exista, copie o arquivo de exemplo:
+
+```sh
+cp .env.example .env
+```
+
+E gere a chave do aplicativo:
+
+```sh
+php artisan key:generate
+```
+
+## 6. Rodando o projeto
+
+Agora, siga os passos abaixo para iniciar o servidor Laravel e o Tailwind CSS:
+
+1. No **VS Code**, abra um terminal e rode o servidor do Laravel:
+
+    ```sh
+    php artisan serve
+    ```
+
+2. Abra **outro terminal** no VS Code e inicie o Tailwind CSS:
+
+    ```sh
+    npm run dev
+    ```
+
+3. Certifique-se de que **Apache** e **MySQL** estão ativos no XAMPP.
+
+4. No navegador, acesse o projeto através do seguinte endereço:
+
+    ```
+    http://127.0.0.1:8000
+    ```
+
+Agora o projeto está rodando corretamente no seu ambiente local! 🚀
